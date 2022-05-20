@@ -1,12 +1,11 @@
 /*
  * The AddressBook Program implements an application that simply
  * displays the Contacts in Address Book that can be modified in certain ways.
- * UC-1: Ability to create a Contacts in Address Book with first and last names, address,
- * city, state, zip, phone number and email…
+ * UC-2: Ability to add a new Contact to Address Book.
  *
  * @author: Sanjana Bhandure
- * @version: 1.1
- * @date: 19-05-2022
+ * @version: 1.2
+ * @date: 20-05-2022
  */
 
 package com.bridgelabz.addressBookSystemUsingCollections;
@@ -15,8 +14,37 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBookMain {
+    static boolean isRunning = true;
+    static Scanner scanner = new Scanner(System.in);
+
     //ArrayList object is created
     ArrayList<Contact> person = new ArrayList<Contact>();
+
+    /*
+     * console method created to read choices from users
+     */
+    public void console() {
+        System.out.println("-----------------");
+        System.out.println("1. Create contact");
+        System.out.println("2. Exit");
+        System.out.println("Enter your choice: ");
+
+        int option = scanner.nextInt();
+        switch (option) {
+            case 1:
+                createContact();
+                break;
+
+            case 2:
+                System.out.println("Exit...");
+                isRunning = false;
+                break;
+
+            default:
+                System.out.println("Enter valid option: ");
+                break;
+        }
+    }
 
     /*
      * createContacts method created to create contacts with the given fields.
@@ -64,8 +92,9 @@ public class AddressBookMain {
 
     public static void main(String[] args) {
         //AddressBookMain object created
-        AddressBookMain book = new AddressBookMain();
-        //method calling
-        book.createContact();
+        AddressBookMain addressBookMain= new AddressBookMain();
+        while (isRunning) {
+            addressBookMain.console();
+        }
     }
 }
