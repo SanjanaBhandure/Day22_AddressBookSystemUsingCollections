@@ -1,23 +1,25 @@
 /*
  * The AddressBook Program implements an application that simply
  * displays the Contacts in Address Book that can be modified in certain ways.
- * UC-5 : Ability to add multiple person to Address Book.
+ * UC-6 : Refactor to add multiple Address Book to the System. Each Address Book
+ * has a unique Name.
  *
  * @author: Sanjana Bhandure
- * @version: 1.5
+ * @version: 1.6
  * @date: 20-05-2022
  */
 
 package com.bridgelabz.addressBookSystemUsingCollections;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.Scanner;
 
 public class AddressBookMain {
     static boolean isRunning = true;
 
     //ArrayList object is created
-    ArrayList<Contact> person = new ArrayList<Contact>();
+    List<Contact> person = new ArrayList<Contact>();
+    Dictionary address = new Hashtable();
 
     //Taking input from the user
     static Scanner scanner = new Scanner(System.in);
@@ -29,7 +31,8 @@ public class AddressBookMain {
         System.out.println("3. Delete Contact");
         System.out.println("4. Print all contacts");
         System.out.println("5. Add multiple person to Address Book");
-        System.out.println("6. Exit");
+        System.out.println("6. Create another address book");
+        System.out.println("7. Exit");
         System.out.println("Enter your choice: ");
 
         int option = scanner.nextInt();
@@ -55,6 +58,10 @@ public class AddressBookMain {
                 break;
 
             case 6:
+                addAddressBook();
+                break;
+
+            case 7:
                 System.out.println("Exit...");
                 isRunning = false;
                 break;
@@ -220,6 +227,18 @@ public class AddressBookMain {
         }
     }
 
+    /*
+     * addAddressBook method created to add new add multiple address book to the system.
+     */
+    public void addAddressBook() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter name of address Book you want: ");
+        AddressBookMain addressBookMain = new AddressBookMain();
+        String bookName = scanner.nextLine();
+        address.put(bookName,addressBookMain);
+        System.out.println("Address Book " +bookName+ " has been created.");
+    }
+    
     /*
      * printAllContacts method created to print all contacts of AddressBook
      */
