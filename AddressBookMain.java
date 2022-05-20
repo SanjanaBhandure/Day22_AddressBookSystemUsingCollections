@@ -1,7 +1,7 @@
 /*
  * The AddressBook Program implements an application that simply
  * displays the Contacts in Address Book that can be modified in certain ways.
- * UC-4: Ability to delete a person using person's name.
+ * UC-5 : Ability to add multiple person to Address Book
  *
  * @author: Sanjana Bhandure
  * @version: 1.4
@@ -28,7 +28,8 @@ public class AddressBookMain {
         System.out.println("2. Edit Contact");
         System.out.println("3. Delete Contact");
         System.out.println("4. Print all contacts");
-        System.out.println("5. Exit");
+        System.out.println("5. Add multiple person to Address Book");
+        System.out.println("6. Exit");
         System.out.println("Enter your choice: ");
 
         int option = scanner.nextInt();
@@ -50,6 +51,10 @@ public class AddressBookMain {
                 break;
 
             case 5:
+                addMultiplePerson();
+                break;
+
+            case 6:
                 System.out.println("Exit...");
                 isRunning = false;
                 break;
@@ -99,7 +104,7 @@ public class AddressBookMain {
         String email = scanner.nextLine();
         contacts.setEmail(email);
 
-        System.out.println("Contact Added Successfully");
+        System.out.println("Contact " +firstName+ "created Successfully");
         person.add(contacts);
         System.out.println(person.toString());
     }
@@ -192,6 +197,26 @@ public class AddressBookMain {
                 System.out.println("Contact removed successfully!!!");
             }else
                 System.out.println("Contact not found.");
+        }
+    }
+
+    /*
+     * addMultiplePerson method created to add multiple person to address Book
+     */
+    public void addMultiplePerson() {
+        while (true) {
+            System.out.println("Enter your choice \n1. Create Contact\n2. Edit Contact" +
+                    "\n3. To Delete Contact\n4. Exit");
+            int option = scanner.nextInt();
+            switch (option) {
+                case 1 -> createContacts();
+                case 2 -> editContacts();
+                case 3 -> deleteContact();
+                case 4 -> System.out.println("Exit..");
+                default -> System.out.println("Invalid Choice");
+            }
+            if (option == 4)
+                break;
         }
     }
 
