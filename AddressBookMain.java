@@ -1,10 +1,10 @@
 /*
  * The AddressBook Program implements an application that simply
  * displays the Contacts in Address Book that can be modified in certain ways.
- * UC-5 : Ability to add multiple person to Address Book
+ * UC-5 : Ability to add multiple person to Address Book.
  *
  * @author: Sanjana Bhandure
- * @version: 1.4
+ * @version: 1.5
  * @date: 20-05-2022
  */
 
