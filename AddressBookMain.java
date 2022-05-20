@@ -1,10 +1,10 @@
 /*
  * The AddressBook Program implements an application that simply
  * displays the Contacts in Address Book that can be modified in certain ways.
- * UC-3: Ability to edit existing contact person using their name
+ * UC-4: Ability to delete a person using person's name.
  *
  * @author: Sanjana Bhandure
- * @version: 1.3
+ * @version: 1.4
  * @date: 20-05-2022
  */
 
@@ -26,7 +26,9 @@ public class AddressBookMain {
         System.out.println("-----------------");
         System.out.println("1. Create contact");
         System.out.println("2. Edit Contact");
-        System.out.println("3. Exit");
+        System.out.println("3. Delete Contact");
+        System.out.println("4. Print all contacts");
+        System.out.println("5. Exit");
         System.out.println("Enter your choice: ");
 
         int option = scanner.nextInt();
@@ -40,6 +42,14 @@ public class AddressBookMain {
                 break;
 
             case 3:
+                deleteContact();
+                break;
+
+            case 4:
+                printAllContacts();
+                break;
+
+            case 5:
                 System.out.println("Exit...");
                 isRunning = false;
                 break;
@@ -89,8 +99,8 @@ public class AddressBookMain {
         String email = scanner.nextLine();
         contacts.setEmail(email);
 
-        person.add(contacts);
         System.out.println("Contact Added Successfully");
+        person.add(contacts);
         System.out.println(person.toString());
     }
 
@@ -169,12 +179,37 @@ public class AddressBookMain {
         }
     } // end of for loop
 
+    /*
+     * deleteContacts method created to remove specific contact.
+     */
+    public void deleteContact() {
+        System.out.println("Enter the First Name of the contact that you want to delete: ");
+        String firstName = scanner.next();
+
+        for (int i = 0; i< person.size();i++) {
+            if (person.get(i).getFirstName().equals(firstName)) {
+                person.remove(person.get(i));
+                System.out.println("Contact removed successfully!!!");
+            }else
+                System.out.println("Contact not found.");
+        }
+    }
+
+    /*
+     * printAllContacts method created to print all contacts of AddressBook
+     */
+    public void printAllContacts() {
+        for (int i = 0; i < person.size(); i++) {
+            System.out.println(person.get(i));
+        }
+    }
 
     public static void main(String[] args) {
         /*
          * Displaying Welcome to Address Book Program in AddressBookMain class
          */
         System.out.println("Welcome to Address Book Program!");
+
         //AddressBookMain object created
         AddressBookMain addressBookMain = new AddressBookMain();
         while (isRunning) {
